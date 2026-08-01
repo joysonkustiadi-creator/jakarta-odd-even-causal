@@ -22,5 +22,6 @@ pyfixest==0.60.0          # panel fixed effects, cluster-robust SE
 # --- visualisasi ---
 matplotlib==3.10.7
 
-# --- deliverable (buka komentar saat membangun dashboard) ---
-# streamlit
+# --- dashboard ---
+streamlit>=1.35
+plotly>=5.20
