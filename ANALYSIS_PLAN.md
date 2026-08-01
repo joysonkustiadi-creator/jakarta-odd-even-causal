@@ -59,7 +59,7 @@ Variabel treatment; sumber lengkap dengan URL di `data/raw/calendar/gage_schedul
 | Jadwal gage | riset pemberitaan (bersumber) | 2019–2026, 9 periode | Treatment | ✔ |
 | Ruas gage GeoJSON | v0 aproksimasi (±100–400 m) | 25 ruas | Klasifikasi treated | ✔ (v1 OSM menyusul) |
 | Koordinat SPKU | aproksimasi ±200 m | 5 stasiun | Geo | ✔ (verifikasi menyusul) |
-| Google Mobility | google.com/covid19/mobility | 2020–Okt 2022 | Kovariat COVID (opsional) | ✖ belum diunduh |
+| Google Mobility | google.com/covid19/mobility | 2020–Okt 2022 | Kovariat COVID (opsional) | ✔ diunduh & difilter, belum dipakai sebagai kovariat |
 | PPID DLH (konsentrasi µg/m³ per jam) | permohonan resmi | — | Pengganti indeks ISPU | ✖ **tidak memperoleh respons dalam periode penelitian** |
 
 ### Temuan kualitas data
@@ -212,7 +212,7 @@ Semua penanganan tercatat di kolom `dq_flag` pada panel final; reparasi terdokum
 - O3 tidak dapat dipakai sebagai placebo (kopel kimiawi NOx–O3).
 - GeoJSON ruas v0 aproksimasi ±100–400 m; koordinat SPKU ±200 m.
 - Transisi 8→3 ruas (Agu–Okt 2021) belum terverifikasi tanggalnya.
-- Google Mobility belum dimasukkan sebagai kovariat.
+- Google Mobility tersedia, belum dimasukkan ke M3.
 
 **Batas cakupan:**
 - Gage mungkin memindahkan lalu lintas ke jalan alternatif tak terpantau (spillover); buffer 2 km memitigasi sebagian.
@@ -259,3 +259,4 @@ Dependensi ter-pin di `requirements.txt`; seluruh angka pada Bagian 6 dihasilkan
 - **2026-07 (c).** M6 randomization inference dijalankan. Hasil H9. Keputusan D12. **Klaim kausal ditarik; verdict final = null/tidak konklusif.** Pertanyaan riset di-reframe ke batas identifikasi.
 - **2026-07 (d).** Pipeline direproduksi penuh lewat `run_all.py` (9 script, 83 detik); seluruh angka H1–H9 identik. Audit panel final menemukan temuan kualitas data #7 dan #8. D9 diperkuat: desain berbasis jam ditutup permanen. Interpretasi H5 direvisi. Verdict final tidak berubah.
 - **2026-07 (e).** Perapian dokumen: status PPID diperbarui (tidak memperoleh respons), tabel data diberi kolom status, Bagian 5 diringkas jadi tabel, Bagian 8 (Reproduksi) ditambahkan, pola missing panel didokumentasikan, skor desain ditambahkan ke verdict.
+- **2026-07 (f).** Koefisien M1/M2/M3 disimpan ke CSV (4 file baru di `data/processed/`). README.md, app.py (dashboard Streamlit), dan repositori git dibuat. Google Mobility diunduh dan difilter.

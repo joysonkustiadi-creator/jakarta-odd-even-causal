@@ -1,3 +1,5 @@
+**[Lihat dashboard interaktif →](https://url-streamlit-kamu)**
+
 # Apakah Ganjil-Genap Menurunkan Polusi Udara Jakarta?
 
 Evaluasi kausal kebijakan pembatasan plat nomor (ganjil-genap) terhadap konsentrasi NO2
@@ -5,6 +7,8 @@ di DKI Jakarta, 2019–2026, menggunakan data stasiun pemantau darat dan satelit
 
 **Jawaban singkat: tidak dapat dijawab secara kredibel dengan data yang tersedia — dan
 project ini mendokumentasikan secara sistematis mengapa.**
+
+**[Lihat dashboard interaktif →](https://jakarta-ganjil-genap.streamlit.app/)**
 
 ---
 
