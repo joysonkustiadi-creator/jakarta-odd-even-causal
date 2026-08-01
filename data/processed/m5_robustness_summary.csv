@@ -1,0 +1,12 @@
+uji,koef,se,p,catatan,sig
+"M1 baseline (level, semua kontrol)",-2.816,1.702,0.1002,,
+R1 log + cincin<=15km,-0.029,0.01,0.0059,=-2.9% efek proporsional,*
+R2 mingguan: treated:regime_on,3.508,1.886,0.0649,kontras rezim saja (workday hilang di mingguan),.
+R5 pre-trend treated:t (per 30 hari; harus ~0),-0.65,0.403,0.1086,,
+R7a 2019-2023,-3.957,1.698,0.0212,,*
+R7b 2021-2026,-14.001,3.154,0.0,,*
+ITS baseline: level shift NO2,-3.349,1.143,0.0034,,*
+R3a placebo O3 (harus ~0),3.997,1.851,0.0308,,*
+R3b placebo SO2 (harus ~0),0.784,1.488,0.5984,,
+R4 placebo tanggal 2021-09-01 (harus ~0),-2.755,1.711,0.1075,,
+R6 ITS tanpa baris ber-flag,-4.849,4.614,0.2933,n hari=1430,

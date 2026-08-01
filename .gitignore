@@ -1,0 +1,10 @@
+# data mentah (47 MB; reproducible via SOURCES.md + script pengumpul)
+data/raw/
+
+# artefak Python
+__pycache__/
+*.pyc
+*.whl
+
+# editor
+.vscode/

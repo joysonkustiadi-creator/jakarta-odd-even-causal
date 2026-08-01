@@ -1,0 +1,4 @@
+uji,efek_asli,n_perm,ri_p,persentil
+RI-A ITS placebo dates,-3.349,37,0.7297,27.0
+RI-B DiD permutasi (spatial),-0.0287,100,0.5,26.0
+RI-B DiD permutasi (random),-0.0287,100,0.06,3.0
