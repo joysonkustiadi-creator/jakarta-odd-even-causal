@@ -4,7 +4,7 @@ Dokumen ini adalah pre-registration internal: keputusan desain, spesifikasi mode
 
 **Lokasi:** root project (`ANALYSIS_PLAN.md`)
 **Dokumen pendamping:** `SOURCES.md` (provenans data), `README.md` (pintu masuk project)
-**Terakhir diperbarui:** 2026-07-29
+**Terakhir diperbarui:** 2026-09-16
 **Status:** analisis kausal selesai; verdict final = **tidak konklusif (null)**. Tahap berikutnya: pelaporan.
 
 ---
@@ -235,20 +235,31 @@ Jalankan seluruhnya: `python run_all.py` (9 script, ±85 detik).
 Ekspor TROPOMI (`scripts/gee_tropomi_export.js`) dijalankan terpisah di Earth Engine Code Editor.
 Dependensi ter-pin di `requirements.txt`; seluruh angka pada Bagian 6 dihasilkan di lingkungan tersebut.
 
+**Dashboard:** `app.py` (Streamlit) membaca langsung dari `data/processed/` — tidak
+menjalankan ulang model, sehingga tampil instan. Jalankan lokal dengan
+`streamlit run app.py`, atau lihat versi online: [ISI URL STREAMLIT KAMU].
+
 **Verifikasi reproduksi (2026-07-29):** pipeline dijalankan penuh dari file mentah; seluruh koefisien H1–H9 identik sampai desimal ketiga.
 
 ---
 
-## 9. Rencana Berikutnya
+## 9. Status Deliverable & Rencana Berikutnya
+
+**Selesai (lihat Changelog f):**
+- Dashboard Streamlit (`app.py`) — plot counterfactual, tabel lintas desain, panel placebo + randomization inference.
+- `README.md` — pintu masuk project.
+- Koefisien M1/M2/M3 disimpan ke CSV.
+- Google Mobility diunduh dan difilter (belum dipakai sebagai kovariat — lihat poin 3 di bawah).
+- Repositori git dibuat dan di-push ke GitHub.
+
+**Belum dikerjakan:**
 
 1. **(Opsional) Desain gradien jarak** — pintu identifikasi terakhir: uji apakah efek meluruh mulus terhadap jarak ke ruas gage (prediksi fungsional spesifik, sulit dipalsukan kebetulan), dengan RI berbasis permutasi permukaan jarak. *Ekspektasi: null juga, karena masalahnya variasi temporal, bukan bentuk fungsional paparan.*
-2. **Finalisasi pelaporan** dengan framing baru. Kontribusi: (a) infrastruktur data tervalidasi silang, termasuk deteksi diskontinuitas metodologi ISPU lewat pembanding satelit dan deteksi smoothing pada data per jam; (b) pemetaan sistematis mengapa tiap desain gagal teridentifikasi di konteks Jakarta; (c) demonstrasi kuantitatif divergensi antar metode inferensi.
-3. **Dashboard Streamlit:** plot counterfactual, tabel lintas desain, panel placebo + randomization inference.
-4. **README.md** — pintu masuk project (pertanyaan, data, temuan, verdict, cara reproduksi).
-5. Ganti GeoJSON v0 → v1 OSM dan verifikasi koordinat SPKU; estimasi ulang untuk memastikan hasil tidak bergantung geometri aproksimasi.
-6. Unduh Google Mobility; masukkan sebagai kovariat M3.
-7. **Rekomendasi riset lanjutan** (bagian diskusi): data yang dibutuhkan agar pertanyaan ini terjawab — konsentrasi µg/m³ **sesaat** (bukan rata-rata bergerak) per jam, data volume lalu lintas per ruas, atau variasi kebijakan yang tidak berimpit libur/pandemi.
-8. Opsional: menjelaskan divergensi pasca-2022 (TROPOMI turun 94→85, indeks stasiun naik).
+2. Ganti GeoJSON v0 → v1 OSM dan verifikasi koordinat SPKU; estimasi ulang untuk memastikan hasil tidak bergantung geometri aproksimasi.
+3. Masukkan Google Mobility sebagai kovariat M3 (data sudah tersedia, lihat Bagian 3).
+4. **Finalisasi pelaporan** dengan framing baru. Kontribusi: (a) infrastruktur data tervalidasi silang, termasuk deteksi diskontinuitas metodologi ISPU lewat pembanding satelit dan deteksi smoothing pada data per jam; (b) pemetaan sistematis mengapa tiap desain gagal teridentifikasi di konteks Jakarta; (c) demonstrasi kuantitatif divergensi antar metode inferensi.
+5. **Rekomendasi riset lanjutan** (bagian diskusi): data yang dibutuhkan agar pertanyaan ini terjawab — konsentrasi µg/m³ **sesaat** (bukan rata-rata bergerak) per jam, data volume lalu lintas per ruas, atau variasi kebijakan yang tidak berimpit libur/pandemi.
+6. Opsional: menjelaskan divergensi pasca-2022 (TROPOMI turun 94→85, indeks stasiun naik).
 
 ---
 
@@ -260,3 +271,4 @@ Dependensi ter-pin di `requirements.txt`; seluruh angka pada Bagian 6 dihasilkan
 - **2026-07 (d).** Pipeline direproduksi penuh lewat `run_all.py` (9 script, 83 detik); seluruh angka H1–H9 identik. Audit panel final menemukan temuan kualitas data #7 dan #8. D9 diperkuat: desain berbasis jam ditutup permanen. Interpretasi H5 direvisi. Verdict final tidak berubah.
 - **2026-07 (e).** Perapian dokumen: status PPID diperbarui (tidak memperoleh respons), tabel data diberi kolom status, Bagian 5 diringkas jadi tabel, Bagian 8 (Reproduksi) ditambahkan, pola missing panel didokumentasikan, skor desain ditambahkan ke verdict.
 - **2026-07 (f).** Koefisien M1/M2/M3 disimpan ke CSV (4 file baru di `data/processed/`). README.md, app.py (dashboard Streamlit), dan repositori git dibuat. Google Mobility diunduh dan difilter.
+- **2026-09 (g).** Bagian 9 direstrukturisasi memisahkan status "selesai" vs "belum dikerjakan" agar sinkron dengan Changelog (f). Bagian 8 ditambah catatan dashboard. Tanggal header diperbarui.

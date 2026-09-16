@@ -2,7 +2,7 @@
 Dashboard: Apakah Ganjil-Genap Menurunkan Polusi Udara Jakarta?
 
 Jalankan lokal:  streamlit run app.py
-Membaca dari data/processed/ dan data/raw/calendar/ — tidak menjalankan model ulang.
+Membaca dari data/processed/ dan data/raw/calendar/ tidak menjalankan model ulang.
 """
 import pandas as pd
 import numpy as np
@@ -40,7 +40,7 @@ def gambar(nama, caption=None):
     if p.exists():
         st.image(str(p), use_container_width=True, caption=caption)
     else:
-        st.warning(f"Gambar belum tersedia: {nama} — jalankan `python run_all.py`.")
+        st.warning(f"Gambar belum tersedia: {nama} jalankan `python run_all.py`.")
 
 
 try:
@@ -64,11 +64,11 @@ k2.metric("Setelah dimodelkan", "−3,35 poin", "p = 0,003",
           help="Level shift ITS dengan kontrol musim, cuaca, hari, libur.")
 k3.metric("Uji randomization", "RI p = 0,50", "gagal", delta_color="inverse",
           help="Efek palsu di lokasi/tanggal acak sama besarnya.")
-k4.metric("Verdict", "Null", help="Tidak konklusif — lihat tab keempat.")
+k4.metric("Verdict", "Null", help="Tidak konklusif, lihat tab keempat.")
 
 st.info(
     "**Kesimpulan:** efek ganjil-genap terhadap NO2 **tidak dapat diidentifikasi "
-    "secara kredibel** dengan data yang tersedia. Bukan berarti efeknya nol — "
+    "secara kredibel** dengan data yang tersedia. Bukan berarti efeknya nol, "
     "melainkan tidak dapat dibedakan dari nol, karena setiap periode kebijakan "
     "dimatikan selalu berimpit dengan pandemi atau libur panjang."
 )
@@ -120,14 +120,14 @@ with tab1:
     a.markdown(
         "**Lompatan permanen di akhir 2020** bukan polusi, melainkan pergantian "
         "rumus indeks ISPU. Dibuktikan dengan satelit: NO2 kolom 2019 = 93,9 vs "
-        "2021 = 91,9 µmol/m² — datar."
+        "2021 = 91,9 µmol/m², datar."
     )
     b.markdown(
         "**Tidak ada lompatan kasat mata** di 6 Juni 2022. Wajar: transisinya "
         "13 → 25 ruas, bukan dari nol. Karena itu dibutuhkan model."
     )
     c.markdown(
-        "**Gelombang musiman ~10 poin** per tahun — lebih besar dari efek "
+        "**Gelombang musiman ~10 poin** per tahun, lebih besar dari efek "
         "kebijakan yang realistis. Kontrol musiman wajib."
     )
 
@@ -143,7 +143,7 @@ with tab2:
     st.subheader("Menggambar garis yang tidak pernah terjadi")
     st.markdown(
         "Untuk menilai kebijakan, kita perlu tahu seperti apa udara Jakarta "
-        "*seandainya* gage tidak diperluas — **counterfactual**. Model ITS "
+        "*seandainya* gage tidak diperluas, **counterfactual**. Model ITS "
         "membangunnya dari tren, musim, cuaca, hari, dan libur."
     )
 
@@ -167,13 +167,13 @@ pasca-COVID dan musiman yang ditelan mentah-mentah oleh perbandingan naif.
 
 Tapi baca dua koefisien bersamaan: level turun {abs(s['its_level_shift']):.2f},
 sementara tren berubah **{s['its_slope_per_30hari']:+.2f} poin per bulan**. Artinya
-penurunan itu terkikis — sekitar **{abs(s['its_level_shift']/s['its_slope_per_30hari']):.0f}
+penurunan itu terkikis, sekitar **{abs(s['its_level_shift']/s['its_slope_per_30hari']):.0f}
 bulan** sampai habis. Pola "turun tajam lalu merangkak naik" ini terdokumentasi di
 Mexico City (*Hoy No Circula*) dan Beijing, dengan mekanisme adaptasi rumah tangga:
 pembelian kendaraan kedua berplat komplementer.
         """
     )
-    st.warning("Angka di halaman ini **tidak lolos** uji randomization inference — "
+    st.warning("Angka di halaman ini **tidak lolos** uji randomization inference, "
                "lihat tab keempat sebelum mengutipnya.")
 
 
@@ -185,11 +185,11 @@ with tab3:
         ["M1", "Triple difference spasial (satelit)", "−2,9% (p=0,006)",
          "Estimasi ada, gagal randomization inference"],
         ["M2", "Triple-diff per jam (stasiun)", "+0,05 (p=0,63)",
-         "Alat ukur tidak mampu — data per jam ter-smoothing"],
+         "Alat ukur tidak mampu, data per jam ter-smoothing"],
         ["M3", "Interrupted Time Series", "−3,35 poin (p=0,003)",
          "Estimasi ada, gagal randomization inference"],
         ["M4", "Event study jeda libur", "−26,7 (p<0,001)",
-         "Terkonfound mudik — jeda gage selalu berimpit libur"],
+         "Terkonfound mudik, jeda gage selalu berimpit libur"],
     ], columns=["Kode", "Desain", "Koefisien kunci", "Putusan"])
     st.dataframe(desain, use_container_width=True, hide_index=True)
 
@@ -220,10 +220,10 @@ with tab3:
         column_config={"uji": st.column_config.TextColumn("Uji", width="large")})
     st.markdown(
         "**Dua lampu kuning.** *R7b*: mengubah jendela waktu membuat estimasi meledak "
-        "5× (−14,0) — karena satu-satunya periode gage mati di jendela itu adalah era "
+        "5× (−14,0) karena satu-satunya periode gage mati di jendela itu adalah era "
         "COVID. *R4*: intervensi fiktif di September 2021 menghasilkan efek hampir "
         "sebesar efek asli.\n\n"
-        "**Satu 'kegagalan' yang bukan kegagalan.** Placebo O3 signifikan positif — "
+        "**Satu 'kegagalan' yang bukan kegagalan.** Placebo O3 signifikan positif, "
         "itu *NOx titration*, fenomena kimia atmosfer di mana ozon naik saat NO2 turun. "
         "O3 karenanya tidak sah sebagai placebo, dan tandanya justru konsisten dengan "
         "adanya penurunan NO2 yang nyata."
@@ -237,9 +237,9 @@ with tab3:
 with tab4:
     st.subheader("Mengapa temuan ini ditarik")
     st.markdown(
-        "Dua desain independen menunjukkan penurunan ~3% dan keduanya signifikan "
-        "secara konvensional. Uji terakhir membatalkannya: **kalau efek sebesar itu "
-        "juga muncul di tanggal dan lokasi acak, maka bukan efek kebijakan."
+    "Dua desain independen menunjukkan penurunan ~3% dan keduanya signifikan "
+    "secara konvensional. Uji terakhir membatalkannya: **kalau efek sebesar itu "
+    "juga muncul di tanggal dan lokasi acak, maka bukan efek kebijakan itu.**"
     )
 
     m6 = D["m6"]
@@ -255,7 +255,7 @@ with tab4:
     with c1:
         gambar("m6_ri_its.png")
         st.caption("37 tanggal intervensi fiktif. Efek asli (merah) berada di "
-                   "persentil 27 — sama sekali tidak ekstrem.")
+                   "persentil 27, sama sekali tidak ekstrem.")
     with c2:
         gambar("m6_ri_did.png")
         st.caption("100 gugus treated palsu. Distribusi ungu (menghormati struktur "
@@ -271,7 +271,7 @@ with tab4:
         use_container_width=True, hide_index=True)
     st.markdown(
         "Untuk koefisien yang **persis sama**. Permutasi acak menghancurkan korelasi "
-        "spasial antar sel bertetangga sehingga distribusi null terlalu sempit — "
+        "spasial antar sel bertetangga sehingga distribusi null terlalu sempit "
         "dan inferensi jadi terlalu optimistis. Ini demonstrasi kuantitatif bahwa "
         "**inferensi konvensional pada data spasial beresolusi tinggi bersifat "
         "anti-konservatif.**"
@@ -280,7 +280,7 @@ with tab4:
     st.error(
         "**Akar masalahnya struktural, bukan soal spesifikasi model.** Setiap periode "
         "ganjil-genap dimatikan berimpit dengan pandemi (2020–2021) atau libur "
-        "panjang/mudik (2023–2026). Tidak pernah ada kondisi *gage mati, kota normal* — "
+        "panjang/mudik (2023–2026). Tidak pernah ada kondisi *gage mati, kota normal* "
         "dan tanpa variasi itu, tidak ada desain observasional yang bisa menolong."
     )
 

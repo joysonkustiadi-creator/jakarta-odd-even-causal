@@ -1,11 +1,9 @@
-**[Lihat dashboard interaktif →](https://url-streamlit-kamu)**
-
 # Apakah Ganjil-Genap Menurunkan Polusi Udara Jakarta?
 
 Evaluasi kausal kebijakan pembatasan plat nomor (ganjil-genap) terhadap konsentrasi NO2
 di DKI Jakarta, 2019–2026, menggunakan data stasiun pemantau darat dan satelit Sentinel-5P.
 
-**Jawaban singkat: tidak dapat dijawab secara kredibel dengan data yang tersedia — dan
+**Jawaban singkat: tidak dapat dijawab secara kredibel dengan data yang tersedia dan
 project ini mendokumentasikan secara sistematis mengapa.**
 
 **[Lihat dashboard interaktif →](https://jakarta-ganjil-genap.streamlit.app/)**
@@ -16,7 +14,7 @@ project ini mendokumentasikan secara sistematis mengapa.**
 
 Membandingkan polusi sebelum dan sesudah kebijakan hampir pasti menyesatkan: polusi Jakarta
 bergerak karena musim hujan, akhir pekan, libur panjang, pemulihan pasca-COVID, dan tren
-kendaraan — semuanya tanpa peduli ada kebijakan atau tidak. Menjawab pertanyaan ini berarti
+kendaraan, semuanya tanpa peduli ada kebijakan atau tidak. Menjawab pertanyaan ini berarti
 memperkirakan sesuatu yang tidak pernah terjadi: seperti apa udara Jakarta *seandainya*
 kebijakan tidak pernah diberlakukan. Itu counterfactual, dan harus dibangun.
 
@@ -34,7 +32,7 @@ Empat desain kausal diuji untuk membangunnya. Tidak satu pun bertahan.
 
 **Akar masalahnya struktural:** setiap periode ganjil-genap dimatikan berimpit dengan
 pandemi (2020–2021) atau libur panjang/mudik (2023–2026). Tidak pernah ada kondisi
-"gage mati, kota normal" — tanpa variasi itu, tidak ada desain observasional yang menolong.
+"gage mati, kota normal" tanpa variasi itu, tidak ada desain observasional yang menolong.
 
 ## Data
 
@@ -45,9 +43,10 @@ pandemi (2020–2021) atau libur panjang/mudik (2023–2026). Tidak pernah ada k
 | Sentinel-5P TROPOMI NO2 (Earth Engine) | 2019–Jul 2026, 156 sel grid 3,5 km | DiD spasial |
 | Open-Meteo | 2019–2026, 5 titik, per jam | kovariat cuaca |
 | Jadwal gage (riset pemberitaan) | 9 periode on/off 2019–2026 | variabel treatment |
-| Google Mobility, kalender libur, geometri ruas | — | kovariat & klasifikasi |
+| Kalender libur, geometri ruas | - | klasifikasi & kalender |
+| Google Mobility | 2020–Okt 2022 | diunduh & difilter, belum dipakai sebagai kovariat |
 
-Portal tidak pernah menerbitkan panel per-stasiun untuk 2022 — persis tahun intervensi.
+Portal tidak pernah menerbitkan panel per-stasiun untuk 2022, persis tahun intervensi.
 Bolong itu ditambal lewat scraping data per jam, lalu **divalidasi terhadap data resmi**
 pada periode tumpang tindih (n=102 stasiun-hari): korelasi 0,978–0,999, bias ≈ 0.
 
@@ -62,7 +61,7 @@ Provenans lengkap: [`SOURCES.md`](SOURCES.md).
 | M3 | Interrupted Time Series (2021+, Newey-West) | −3,35 poin (p=0,003) → gagal RI |
 | M4 | Event study jeda libur | terkonfound mudik |
 | M5 | 11 uji ketahanan (placebo tanggal/outcome, pre-trend, jendela, dll.) | dua lampu kuning |
-| M6 | Randomization inference (137 permutasi) | **penentu verdict** |
+| M6 | Randomization inference (37 tanggal fiktif + 200 permutasi label sel) | **penentu verdict** |
 
 Catatan desain dan seluruh keputusan yang dikunci sebelum melihat hasil:
 [`ANALYSIS_PLAN.md`](ANALYSIS_PLAN.md).
@@ -72,10 +71,11 @@ Catatan desain dan seluruh keputusan yang dikunci sebelum melihat hasil:
 ```
 ├── ANALYSIS_PLAN.md          pre-registration: keputusan, spesifikasi, hasil, verdict
 ├── SOURCES.md                provenans tiap dataset
+├── app.py                    dashboard Streamlit (baca data/processed/, tidak jalankan ulang model)
 ├── requirements.txt          dependensi ter-pin
 ├── run_all.py                jalankan seluruh pipeline
 ├── data/
-│   ├── raw/                  data mentah — tidak pernah diedit
+│   ├── raw/                  data mentah, tidak pernah diedit
 │   └── processed/            tabel analisis, tabel hasil, gambar
 └── scripts/
     ├── download_*.py         pengumpul data (cuaca, kalender, mobility)
@@ -99,8 +99,8 @@ Ekspor satelit dijalankan terpisah: paste `scripts/gee_tropomi_export.js` ke
 [Earth Engine Code Editor](https://code.earthengine.google.com), Run, lalu submit 8 task
 di tab Tasks. Hasil masuk ke Google Drive → salin ke `data/raw/tropomi/`.
 
-Diverifikasi 2026-07-29: pipeline dijalankan penuh dari data mentah, seluruh koefisien
-identik dengan yang tercatat di `ANALYSIS_PLAN.md`.
+Diverifikasi 2026-07-31 : pipeline dijalankan penuh
+dari data mentah, seluruh koefisien identik dengan yang tercatat di `ANALYSIS_PLAN.md`.
 
 ## Kontribusi
 
@@ -108,7 +108,7 @@ identik dengan yang tercatat di `ANALYSIS_PLAN.md`.
    termasuk deteksi dua cacat pengukuran yang tidak terdokumentasi publik (pergantian
    skala indeks dan smoothing pada data per jam), keduanya terungkap lewat pembanding
    independen.
-2. **Pemetaan sistematis batas identifikasi** kebijakan ganjil-genap di konteks Jakarta —
+2. **Pemetaan sistematis batas identifikasi** kebijakan ganjil-genap di konteks Jakarta,
    mengapa tiap desain gagal, dan variasi apa yang harus ada agar pertanyaan ini terjawab.
 3. **Demonstrasi kuantitatif** bahwa inferensi konvensional melebih-lebihkan presisi pada
    data spasial beresolusi tinggi (0,006 vs 0,500 untuk koefisien yang sama).
