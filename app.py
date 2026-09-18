@@ -25,8 +25,8 @@ WARNA_REZIM = {"ON": "#2e7d32", "ON_PARTIAL": "#f9a825",
 def muat():
     d = {}
     d["panel"] = pd.read_csv(PROC / "master_panel_daily.csv", parse_dates=["date"])
-    d["gage"] = pd.read_csv(RAW / "calendar" / "gage_schedule.csv",
-                            parse_dates=["start_date", "end_date"])
+    d["gage"] = pd.read_csv(PROC / "calendar" / "gage_schedule.csv",
+                        parse_dates=["start_date", "end_date"])
     d["m1"] = pd.read_csv(PROC / "m1_coefficients.csv")
     d["m3sum"] = pd.read_csv(PROC / "m3_its_summary.csv")
     d["m5"] = pd.read_csv(PROC / "m5_robustness_summary.csv")
