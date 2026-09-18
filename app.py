@@ -298,3 +298,7 @@ st.caption(
     "Metodologi lengkap dan seluruh keputusan yang dikunci sebelum melihat hasil: "
     "`ANALYSIS_PLAN.md`."
 )
+
+st.caption(
+    "Dibuat oleh [Joshua Joyson Kustiadi](https://github.com/joysonkustiadi-creator)."
+)
