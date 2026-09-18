@@ -1,27 +1,12 @@
-# Analisis kausal ganjil-genap Jakarta
-# Python 3.13 (miniconda, Windows)
-# Instal: pip install -r requirements.txt
-
-# --- data & komputasi ---
-pandas==2.3.3
-numpy==2.2.6
-lxml==6.1.1               # baca file .xls dari portal (sebenarnya HTML)
-
-# --- pengumpulan data ---
-requests==2.33.1          # Open-Meteo API, scraping
-beautifulsoup4==4.14.3    # parser HTML rendahemisi
-holidays==0.101           # kalender libur nasional Indonesia
-
-# --- geospasial ---
-shapely==2.1.2            # klasifikasi sel treated/control
-
-# --- ekonometrika ---
-statsmodels==0.14.6       # ITS, Newey-West (HAC)
-pyfixest==0.60.0          # panel fixed effects, cluster-robust SE
-
-# --- visualisasi ---
-matplotlib==3.10.7
-
-# --- dashboard ---
-streamlit>=1.35
-plotly>=5.20
+pandas
+numpy
+lxml
+requests
+beautifulsoup4
+holidays
+shapely
+statsmodels
+pyfixest
+matplotlib
+streamlit
+plotly
